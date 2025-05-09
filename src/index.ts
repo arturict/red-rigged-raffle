@@ -4,8 +4,8 @@
 //   \ V /  __/ |  | | (_) \__ \ |_| | | | | (_| |
 //    \_/ \___|_|  |_|\___/|___/\__,_|_| |_|\__, |
 
-import { AbsneakenderHase } from "./absneakender-hase.js";
-import { GewinnbarerHase } from "./gewinnbarer-hase.js";
+import { assignPrizesRandomlyderHase } from "./absneakender-hase.js";
+import { price } from "./gewinnbarer-hase.js";
 
 //
 export class Verlosung {
@@ -31,7 +31,7 @@ export class Verlosung {
   //               __/-___-- -__
   //              /            _ \
   public main() {
-    const redArmy = [
+    const contestants = [
       "@Gangsta2007",
       "@LockeDerBoss",
       "@MiiMiiSeinBruder",
@@ -65,21 +65,22 @@ export class Verlosung {
       "@LeonMachere",
       "@LeonMachere",
       "@LeonMachere",
+      "@ArturDieLegende",
     ];
     const fiktivePreise = [
-      new GewinnbarerHase("iPhone 16 Pro", 1),
-      new GewinnbarerHase("Trip nach Dubi", 1),
-      new GewinnbarerHase("Stepper nach Isti", 1),
-      new GewinnbarerHase("10 kg Haribo", 2),
-      new GewinnbarerHase("PlayStation 5 Slim", 3),
-      new GewinnbarerHase("gebrauchte Sneaker", 5),
+      new price("iPhone 16 Pro", 1),
+      new price("Trip nach Dubai", 1),
+      new price("Stepper nach Isti", 1),
+      new price("10 kg Haribo", 2),
+      new price("PlayStation 5 Slim", 3),
+      new price("gebrauchte Sneaker", 5),
     ];
-    const luckyMuckies = new AbsneakenderHase(
-      redArmy,
+    const winners = new assignPrizesRandomlyderHase(
+      contestants,
       fiktivePreise,
-    ).absneaken();
-    for (const [opfer, gewonnenerHase] of luckyMuckies.entries()) {
-      console.log(`${opfer} gewinnt ${gewonnenerHase}`);
+    ).assignPrizesRandomly();
+    for (const [winner, price] of winners.entries()) {
+      console.log(`${winner} gewinnt ${price}`);
     }
   }
 }
